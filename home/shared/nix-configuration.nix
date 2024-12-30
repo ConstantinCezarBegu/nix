@@ -1,11 +1,6 @@
 {
   programs.home-manager.enable = true;
 
-  imports = [
-    ./fonts
-    ./programs
-  ];
-
   nix.settings.auto-optimise-store = true;
   nix.gc = {
     automatic = true;

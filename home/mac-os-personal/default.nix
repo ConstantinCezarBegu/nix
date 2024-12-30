@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./../shared
+    ./programs.nix
+  ];
+}

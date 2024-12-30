@@ -52,16 +52,16 @@
     {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#simple
-      darwinConfigurations."macbook_air" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."mac_os_personal" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
-          ./home/modules
+          ./home/darwin-modules
           inputs.mac-app-util.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.constantinbegu = import ./home/constantin;
+            home-manager.users.constantinbegu = import ./home/mac-os-personal;
             home-manager.sharedModules = [
               inputs.mac-app-util.homeManagerModules.default
             ];
@@ -69,10 +69,6 @@
             # arguments to home.nix
           }
           {
-            users.users.constantinbegu = {
-              name = "constantinbegu";
-              home = "/Users/constantinbegu";
-            };
             nixpkgs.overlays = [
               inputs.fenix.overlays.default
               inputs.neovim-nightly-overlay.overlays.default
@@ -85,6 +81,6 @@
       };
 
       # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."macbook_air".pkgs;
+      darwinPackages = self.darwinConfigurations."mac_os_personal".pkgs;
     };
 }
