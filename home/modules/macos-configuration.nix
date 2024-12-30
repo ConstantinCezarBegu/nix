@@ -8,7 +8,7 @@
   power.sleep.computer = 15;
   power.sleep.display = 10;
   power.restartAfterFreeze = true;
-  power.restartAfterPowerFailure = true;
+  # power.restartAfterPowerFailure = true; fails silently
 
   security.pam.enableSudoTouchIdAuth = true;
 
@@ -77,8 +77,6 @@
     };
 
     hitoolbox.AppleFnUsageType = "Show Emoji & Symbols";
-
-    LaunchServices.LSQuarantine = true;
 
     loginwindow = {
       autoLoginUser = "Off";
@@ -214,43 +212,6 @@
         "DarkenSystemColors" = 1;
         "ReduceMotionAutoplayAnimatedImagesEnabled" = 0;
         "PrefersNonBlinkingCursorIndicator" = 1;
-      };
-
-      "com.apple.AppleMultitouchTrackpad" = {
-        "TrackpadRotate" = false;
-        "ForceSuppressed" = true;
-        "TrackpadCornerSecondaryClick" = 0;
-        "TrackpadTwoFingerDoubleTapGesture" = 0;
-        "TrackpadTwoFingerFromRightEdgeSwipeGesture" = 0;
-        "TrackpadThreeFingerVertSwipeGesture" = 0;
-        "TrackpadThreeFingerTapGesture" = 0;
-        "TrackpadThreeFingerHorizSwipeGesture" = 0;
-        "TrackpadThreeFingerDrag" = false;
-        "TrackpadFourFingerVertSwipeGesture" = 0;
-        "TrackpadFourFingerHorizSwipeGesture" = 0;
-        "TrackpadFourFingerPinchGesture" = 0;
-        "TrackpadFiveFingerPinchGesture" = 0;
-      };
-
-      "com.apple.driver.AppleBluetoothMultitouch.trackpad" = {
-        "ActuationStrength" = 0;
-        "Clicking" = false;
-        "Dragging" = false;
-        "FirstClickThreshold" = 0;
-        "TrackpadRightClick" = true;
-        "TrackpadRotate" = false;
-        "ForceSuppressed" = true;
-        "TrackpadCornerSecondaryClick" = 0;
-        "TrackpadTwoFingerDoubleTapGesture" = 0;
-        "TrackpadTwoFingerFromRightEdgeSwipeGesture" = 0;
-        "TrackpadThreeFingerVertSwipeGesture" = 0;
-        "TrackpadThreeFingerTapGesture" = 0;
-        "TrackpadThreeFingerHorizSwipeGesture" = 0;
-        "TrackpadThreeFingerDrag" = false;
-        "TrackpadFourFingerVertSwipeGesture" = 0;
-        "TrackpadFourFingerHorizSwipeGesture" = 0;
-        "TrackpadFourFingerPinchGesture" = 0;
-        "TrackpadFiveFingerPinchGesture" = 0;
       };
 
       "com.apple.controlcenter" = {

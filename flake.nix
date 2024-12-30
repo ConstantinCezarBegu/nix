@@ -12,6 +12,7 @@
     fenix.url = "github:nix-community/fenix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     stylix.url = "github:danth/stylix";
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs =
@@ -38,7 +39,7 @@
           nix.settings.experimental-features = "nix-command flakes";
 
           # Set Git commit hash for darwin-version.
-          system.configurationRevision = self.dirtyRev;
+          system.configurationRevision = self.dirtyRev or null;
 
           # Used for backwards compatibility, please read the changelog before changing.
           # $ darwin-rebuild changelog
@@ -54,17 +55,24 @@
       darwinConfigurations."macbook_air" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
-          ./home/constantin/modules
+          ./home/modules
+          inputs.mac-app-util.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.constantinbegu = import ./home/constantin;
-
+            home-manager.sharedModules = [
+              inputs.mac-app-util.homeManagerModules.default
+            ];
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
           }
           {
+            users.users.constantinbegu = {
+              name = "constantinbegu";
+              home = "/Users/constantinbegu";
+            };
             nixpkgs.overlays = [
               inputs.fenix.overlays.default
               inputs.neovim-nightly-overlay.overlays.default
