@@ -1,5 +1,8 @@
 {
   imports = [
+    ./../shared
+    ./nix-configuration.nix
+    ./users.nix
     ./macos-configuration.nix
     ./macos-keyboard-shortcuts-configuration.nix
     ./macos-trackpad-configuration.nix

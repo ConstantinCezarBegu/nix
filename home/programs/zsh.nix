@@ -34,10 +34,6 @@
         src = pkgs.zsh-you-should-use.src;
       }
       {
-        name = pkgs.zsh-vi-mode.pname;
-        src = pkgs.zsh-vi-mode.src;
-      }
-      {
         name = pkgs.zsh-autocomplete.pname;
         src = pkgs.zsh-autocomplete.src;
       }

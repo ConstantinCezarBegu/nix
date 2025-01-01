@@ -1,9 +1,4 @@
 {
-  users.users.constantinbegu = {
-    name = "constantinbegu";
-    home = "/Users/constantinbegu";
-  };
-
   power.sleep.allowSleepByPowerButton = false;
   power.sleep.computer = 15;
   power.sleep.display = 10;

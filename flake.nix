@@ -1,5 +1,5 @@
 {
-  description = "Darwin system flake";
+  description = "nix-configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -18,69 +18,44 @@
   outputs =
     inputs@{
       self,
-      nix-darwin,
       nixpkgs,
+      nix-darwin,
       nix-homebrew,
       home-manager,
       agenix,
       ...
     }:
     let
-      configuration =
-        { pkgs, config, ... }:
+      globalModules = [
+        { system.configurationRevision = self.rev or self.dirtyRev or null; }
         {
-
-          nixpkgs.config.allowUnfree = true;
-
-          # Auto upgrade nix package and the daemon service.
-          services.nix-daemon.enable = true;
-
-          # Necessary for using flakes on this system.
-          nix.settings.experimental-features = "nix-command flakes";
-
-          # Set Git commit hash for darwin-version.
-          system.configurationRevision = self.dirtyRev or null;
-
-          # Used for backwards compatibility, please read the changelog before changing.
-          # $ darwin-rebuild changelog
-          system.stateVersion = 5;
-
-          # The platform the configuration will be used on.
-          nixpkgs.hostPlatform = "aarch64-darwin";
-        };
+          nixpkgs.overlays = [
+            inputs.fenix.overlays.default
+            inputs.neovim-nightly-overlay.overlays.default
+          ];
+        }
+      ];
+      globalModulesMacos = globalModules ++ [
+        ./module/darwin
+        inputs.mac-app-util.darwinModules.default
+        agenix.darwinModules.default
+        inputs.stylix.darwinModules.stylix
+        home-manager.darwinModules.home-manager
+        { home-manager.sharedModules = [ inputs.mac-app-util.homeManagerModules.default ]; }
+      ];
+      macosPersonal = globalModulesMacos ++ [
+        { home-manager.users.constantinbegu = import ./home/mac-os-personal; }
+      ];
+      globalModulesNixos = globalModules ++ [
+        ./module/nix-os
+      ];
     in
     {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#simple
       darwinConfigurations."mac_os_personal" = nix-darwin.lib.darwinSystem {
-        modules = [
-          configuration
-          ./home/darwin-modules
-          inputs.mac-app-util.darwinModules.default
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.constantinbegu = import ./home/mac-os-personal;
-            home-manager.sharedModules = [
-              inputs.mac-app-util.homeManagerModules.default
-            ];
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
-          {
-            nixpkgs.overlays = [
-              inputs.fenix.overlays.default
-              inputs.neovim-nightly-overlay.overlays.default
-            ];
-          }
-          agenix.darwinModules.default
-          inputs.stylix.darwinModules.stylix
-        ];
+        modules = macosPersonal;
         specialArgs = { inherit nix-homebrew agenix; };
       };
-
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."mac_os_personal".pkgs;
     };
 }
