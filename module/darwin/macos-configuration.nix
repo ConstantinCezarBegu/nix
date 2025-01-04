@@ -26,7 +26,7 @@
       dashboard-in-overlay = false;
       enable-spring-load-actions-on-all-items = false;
       expose-animation-duration = 1.0;
-      expose-group-apps = false;
+      expose-group-apps = true;
       largesize = 16;
       launchanim = false;
       magnification = false;
@@ -168,7 +168,7 @@
 
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
 
-    spaces.spans-displays = false;
+    spaces.spans-displays = true;
 
     trackpad = {
       ActuationStrength = 0;
