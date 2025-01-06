@@ -4,7 +4,7 @@
       AppleSymbolicHotKeys = {
         # Move left a space
         "79" = {
-          enabled = true;
+          enabled = false;
           value = {
             parameters = [
               65535
@@ -16,7 +16,7 @@
         };
         # Move right a space
         "81" = {
-          enabled = true;
+          enabled = false;
           value = {
             parameters = [
               65535

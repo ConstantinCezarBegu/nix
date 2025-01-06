@@ -8,8 +8,6 @@
     ./macos-trackpad-configuration.nix
     ./macos-spotlight-configuration.nix
     ./homebrew.nix
-    ./yabai.nix
-    ./skhd.nix
-    ./stylix.nix
+    ./aerospace.nix
   ];
 }
