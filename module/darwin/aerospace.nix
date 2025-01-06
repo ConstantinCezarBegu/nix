@@ -9,8 +9,8 @@
 
       after-startup-command = [ "layout tiles" ];
 
-      on-focus-changed = [ "move-mouse window-lazy-center" ];
-      on-focused-monitor-changed = [ "move-mouse window-lazy-center" ];
+      on-focus-changed = [ "move-mouse window-force-center" ];
+      on-focused-monitor-changed = [ "move-mouse window-force-center" ];
 
       # Possible values: horizontal|vertical|auto
       # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -45,46 +45,76 @@
         # Move
         cmd-alt-ctrl-shift-f10 = [
           "move left"
-          "move-mouse window-lazy-center"
+          "move-mouse window-force-center"
         ];
         cmd-alt-ctrl-shift-f11 = [
           "move right"
-          "move-mouse window-lazy-center"
+          "move-mouse window-force-center"
         ];
         cmd-alt-ctrl-shift-f12 = [
           "move up"
-          "move-mouse window-lazy-center"
+          "move-mouse window-force-center"
         ];
         cmd-alt-ctrl-shift-f13 = [
           "move down"
-          "move-mouse window-lazy-center"
+          "move-mouse window-force-center"
         ];
 
         # Join
-        cmd-alt-ctrl-shift-f14 = "join-with left";
-        cmd-alt-ctrl-shift-f15 = "join-with right";
-        cmd-alt-ctrl-shift-f16 = "join-with up";
-        cmd-alt-ctrl-shift-f17 = "join-with down";
+        cmd-alt-ctrl-shift-f14 = [
+          "join-with left"
+          "move-mouse window-force-center"
+        ];
+        cmd-alt-ctrl-shift-f15 = [
+          "join-with right"
+          "move-mouse window-force-center"
+        ];
+        cmd-alt-ctrl-shift-f16 = [
+          "join-with up"
+          "move-mouse window-force-center"
+        ];
+        cmd-alt-ctrl-shift-f17 = [
+          "join-with down"
+          "move-mouse window-force-center"
+        ];
 
         # Focus workspace
         cmd-alt-ctrl-shift-f18 = "workspace prev";
         cmd-alt-ctrl-shift-f19 = "workspace next";
 
         # Move active window to workspace
-        cmd-alt-ctrl-shift-f20 = "move-node-to-workspace prev";
-        cmd-alt-ctrl-f1 = "move-node-to-workspace next";
+        cmd-alt-ctrl-shift-f20 = [
+          "move-node-to-workspace prev"
+          "workspace prev"
+        ];
+        cmd-alt-ctrl-f1 = [
+          "move-node-to-workspace next"
+          "workspace next"
+        ];
 
         # Change monitor focus
         cmd-alt-ctrl-f2 = "focus-monitor prev";
         cmd-alt-ctrl-f3 = "focus-monitor next";
 
         # Change window to monitor
-        cmd-alt-ctrl-f4 = "move-node-to-monitor prev";
-        cmd-alt-ctrl-f5 = "move-node-to-monitor next";
+        cmd-alt-ctrl-f4 = [
+          "move-node-to-monitor prev"
+          "focus-monitor prev"
+        ];
+        cmd-alt-ctrl-f5 = [
+          "move-node-to-monitor next"
+          "focus-monitor next"
+        ];
 
         # Move workspace to monitor
-        cmd-alt-ctrl-f6 = "move-workspace-to-monitor prev";
-        cmd-alt-ctrl-f7 = "move-workspace-to-monitor next";
+        cmd-alt-ctrl-f6 = [
+          "move-workspace-to-monitor prev"
+          "focus-monitor prev"
+        ];
+        cmd-alt-ctrl-f7 = [
+          "move-workspace-to-monitor next"
+          "focus-monitor next"
+        ];
 
         # toggle full screen
         cmd-alt-ctrl-f8 = "fullscreen";
