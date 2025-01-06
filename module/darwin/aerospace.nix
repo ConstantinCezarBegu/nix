@@ -133,14 +133,38 @@
         cmd-f8 = "workspace 8";
 
         # move to specific workspace
-        cmd-f11 = "move-node-to-workspace 1";
-        cmd-f12 = "move-node-to-workspace 2";
-        cmd-f13 = "move-node-to-workspace 3";
-        cmd-f14 = "move-node-to-workspace 4";
-        cmd-f15 = "move-node-to-workspace 5";
-        cmd-f16 = "move-node-to-workspace 6";
-        cmd-f17 = "move-node-to-workspace 7";
-        cmd-f18 = "move-node-to-workspace 8";
+        cmd-f11 = [
+          "move-node-to-workspace 1"
+          "workspace 1"
+        ];
+        cmd-f12 = [
+          "move-node-to-workspace 2"
+          "workspace 2"
+        ];
+        cmd-f13 = [
+          "move-node-to-workspace 3"
+          "workspace 3"
+        ];
+        cmd-f14 = [
+          "move-node-to-workspace 4"
+          "workspace 4"
+        ];
+        cmd-f15 = [
+          "move-node-to-workspace 5"
+          "workspace 5"
+        ];
+        cmd-f16 = [
+          "move-node-to-workspace 6"
+          "workspace 6"
+        ];
+        cmd-f17 = [
+          "move-node-to-workspace 7"
+          "workspace 7"
+        ];
+        cmd-f18 = [
+          "move-node-to-workspace 8"
+          "workspace 8"
+        ];
       };
     };
   };
