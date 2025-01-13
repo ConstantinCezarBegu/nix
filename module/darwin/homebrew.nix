@@ -1,8 +1,23 @@
-{ nix-homebrew, ... }:
-
+{ config, ... }:
 {
   homebrew = {
     enable = true;
+    taps = builtins.attrNames config.nix-homebrew.taps;
+    global = {
+      # nix-homebrew is handling homebrew updates
+      autoUpdate = false;
+    };
+    onActivation = {
+      # "zap" removes manually installed brews and casks
+      cleanup = "zap";
+      # nix-homebrew is handling homebrew updates
+      autoUpdate = false;
+      upgrade = true;
+    };
+    caskArgs = {
+      no_quarantine = true;
+    };
+
     brews = [
       "mas"
     ];
@@ -37,21 +52,5 @@
       # Other
       "Monodraw" = 920404675;
     };
-    onActivation.cleanup = "zap";
   };
-
-  inherit
-    (nix-homebrew.darwinModules.nix-homebrew {
-      nix-homebrew = {
-        # Install Homebrew under the default prefix
-        enable = true;
-
-        # User owning the Homebrew prefix
-        user = "constantinbegu";
-
-        # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
-        mutableTaps = false;
-      };
-    })
-    ;
 }
